@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="shadow card" style="margin: 50px auto; width: 60%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden; border: 1px solid #ddd;">
+  <div class="card-body" style="padding: 20px; font-size: 16px;">
+    <h5 style="font-size: 20px; font-weight: bold; color: #333;">{{ task.name }}</h5>
+    <p style="margin: 10px 0; font-size: 16px; color: #555;"><b>Priority:</b> {{ task.priority }}</p>
+    <p style="margin: 10px 0; font-size: 16px; color: #555;"><b>Date:</b> {{ task.date }}</p>
+    <div style="margin-top: 20px;">
+      <a
+        class="btn btn-danger"
+        href="{% url 'delete' task.id %}"
+        style="background-color: #dc3545; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-size: 14px; transition: background-color 0.3s ease;">
+        Done
+      </a>
+      <a
+        class="btn btn-info"
+        href="{% url 'update' task.id %}"
+        style="background-color: #17a2b8; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-size: 14px; margin-left: 10px; transition: background-color 0.3s ease;">
+        Edit
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

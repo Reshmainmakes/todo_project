@@ -1,0 +1,103 @@
+<!--{% extends 'base.html' %}-->
+<!--{% block content %}-->
+{% load static %}
+<style>
+ body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/download.png' %}");
+
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+            padding: 20px;
+        }
+  .card {
+  margin: 50px auto;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  border: none;
+  background-color: #fff;
+  /* Added a subtle box shadow and rounded corners for a modern look */
+}
+
+.card-header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 25px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.card-body {
+  padding: 40px;
+  font-size: 16px;
+  background-color: #f7f8fc;
+}
+
+.btn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 40px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  background-color: #3e8e41;
+  /* Added a hover effect for a more interactive feel */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Optional: Customize the form fields */
+form input[type="text"],
+form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+</style>
+<body>
+<div class="card" style="margin: 50px auto; width: 80%; max-width: 600px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); border-radius: 16px; overflow: hidden; border: none; background-color: #fff;">
+  <div class="card-header" style="background-color: #007bff; color: white; padding: 20px; font-size: 20px; text-align: center; font-weight: bold; letter-spacing: 1px;">
+    Task Update
+  </div>
+  <div class="card-body" style="padding: 30px; font-size: 16px; background-color: #f9f9f9;">
+    <form method="post" style="margin-top: 10px;">
+      {% csrf_token %}
+      <div style="margin-bottom: 20px;">
+        {{ f.as_p }}
+      </div>
+      <input
+        class="btn btn-primary"
+        type="submit"
+        value="Submit"
+        style="background-color: #007bff; border: none; color: white; padding: 12px 30px; font-size: 16px; cursor: pointer; border-radius: 6px; transition: all 0.3s ease; font-weight: bold; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    </form>
+  </div>
+</div>
+</body>
+<!--{% endblock %}-->

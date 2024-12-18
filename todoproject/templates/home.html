@@ -1,0 +1,166 @@
+{% load static %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url("{% static 'images/download.png' %}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    padding: 20px;
+    color: #333;
+  }
+
+  .banner {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 15px; /* Reduced padding for smaller size */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    margin: 10px auto; /* Reduced margin for more compact spacing */
+    max-width: 70%; /* Decreased max-width for a smaller box */
+    text-align: center;
+}
+
+  .banner h2 {
+    color: Black;
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px; /* Reduced padding */
+    max-width: 60%; /* Reduced width for smaller form */
+    margin: 15px auto; /* Reduced margin */
+}
+
+  .form-container h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .form-container .form-control {
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+  }
+
+  .form-container .btn-success {
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .form-container .btn-success:hover {
+    background-color: #218838;
+  }
+
+  .task-list h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .task-list {
+      max-height: 100vh;
+      overflow-y: auto;
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-right: 1px solid #dee2e6;
+    }
+    .task-card {
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  .task-card h5 {
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .task-card p {
+    margin: 5px 0;
+    color: #555;
+  }
+
+  .task-card .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .task-card .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    margin-right: 10px;
+  }
+
+  .task-card .btn-danger:hover {
+    background-color: #c82333;
+  }
+
+  .task-card .btn-info {
+    background-color: #17a2b8;
+    color: white;
+  }
+
+  .task-card .btn-info:hover {
+    background-color: #138496;
+  }
+</style>
+
+<div class="banner">
+  <h2>TASKS</h2>
+</div>
+
+<div class="container">
+  <div class="row">
+    <!-- Task Creation Form -->
+    <div class="col-md-6">
+      <div class="form-container">
+        <h4>Add New Task</h4>
+        <form method="post">
+          {% csrf_token %}
+          <input type="text" class="form-control" name="task" placeholder="Task Name">
+          <input type="text" class="form-control" name="priority" placeholder="Priority">
+          <input type="date" class="form-control" name="date">
+          <input type="submit" class="btn btn-success w-100" value="Submit">
+        </form>
+      </div>
+    </div>
+
+    <!-- Task List -->
+    <div class="col-md-6 task-list">
+      <h4>Tasks to be Completed</h4>
+      {% for i in task1 %}
+      <div class="task-card">
+        <h5>{{ i.name }}</h5>
+        <p><b>Priority:</b> {{ i.priority }}</p>
+        <p><b>Date:</b> {{ i.date }}</p>
+          <br>
+        <div>
+          <a class="btn btn-danger" href="{% url 'delete' i.id %}">Done</a>
+          <a class="btn btn-info" href="{% url 'update' i.id %}">Edit</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
